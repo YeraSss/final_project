@@ -1,0 +1,50 @@
+{{define "title"}}Home{{end}}
+
+{{define "main"}}
+    <h2>Fresh Events</h2>
+    {{if .Snippets}}
+        <table>
+            <tr>
+                <th>Event Name</th>
+                <th>Type</th>
+                <th>Happens</th>
+                <th>Order</th>
+            </tr>
+            {{range .Snippets}}
+            <tr>
+                <td><a href='/snippet/view/{{.ID}}'>
+                {{if (eq .Genre 1)}} <div class="genre1">{{.Title}}</div> {{end}}
+                {{if (eq .Genre 2)}} <div class="genre2">{{.Title}}</div> {{end}}
+                {{if (eq .Genre 3)}} <div class="genre3">{{.Title}}</div> {{end}}
+                {{if (eq .Genre 4)}} <div class="genre4">{{.Title}}</div> {{end}}
+                {{if (eq .Genre 0)}} <div class="genre0">{{.Title}}</div> {{end}}
+                </a></td>
+                <!-- Use the new template function here -->
+                <td>
+                {{if (eq .Genre 0)}} <div class="genre0">Untitled</div> {{end}}
+                {{if (eq .Genre 1)}} <div class="genre1">Sport</div> {{end}}
+                {{if (eq .Genre 2)}} <div class="genre2">Art</div> {{end}}
+                {{if (eq .Genre 3)}} <div class="genre3">Humour</div> {{end}}
+                {{if (eq .Genre 4)}} <div class="genre4">Other</div> {{end}}
+                </td>
+                <td>
+                {{if (eq .Genre 0)}} <div class="genre0">{{humanDate .Created}}</div> {{end}}
+                {{if (eq .Genre 1)}} <div class="genre1">{{humanDate .Created}}</div> {{end}}
+                {{if (eq .Genre 2)}} <div class="genre2">{{humanDate .Created}}</div> {{end}}
+                {{if (eq .Genre 3)}} <div class="genre3">{{humanDate .Created}}</div> {{end}}
+                {{if (eq .Genre 4)}} <div class="genre4">{{humanDate .Created}}</div> {{end}}
+                </td>
+                <td>
+                {{if (eq .Genre 0)}} <div class="genre0">#{{.ID}}</div> {{end}}
+                {{if (eq .Genre 1)}} <div class="genre1">#{{.ID}}</div> {{end}}
+                {{if (eq .Genre 2)}} <div class="genre2">#{{.ID}}</div> {{end}}
+                {{if (eq .Genre 3)}} <div class="genre3">#{{.ID}}</div> {{end}}
+                {{if (eq .Genre 4)}} <div class="genre4">#{{.ID}}</div> {{end}}
+                </td>
+            </tr>
+            {{end}}
+        </table>
+    {{else}}
+        <p>There's no upcoming event... yet!</p>
+    {{end}}
+{{end}}
